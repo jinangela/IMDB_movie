@@ -1,0 +1,28 @@
+ 'actor_1_facebook_likes'				numeric				impute with median
+ 'actor_1_name'							string				impute with "Unknown"
+ 'actor_2_facebook_likes'				numeric				impute with median
+ 'actor_2_name'							string				impute with "Unknown"
+ 'actor_3_facebook_likes'				numeric				impute with median
+ 'actor_3_name'							string				impute with "unknown"
+ 'aspect_ratio'							numeric				impute with median or depends on the title_year, replace 16 with 16:9 -> 1.85
+ 'budget'								numeric				impute with median
+ 'cast_total_facebook_likes'			numeric				impute with median
+ 'color'								category			impute with mode or depends on the title_year
+ 'content_rating'						category			impute with Unrated, replace Not Rated with Unrated
+ 'country'								category			impute with "Unknown"
+ 'director_facebook_likes'				numeric				impute with median
+ 'director_name'						string				impute with "Unknown"
+ 'duration'								numeric				impute with median
+ 'facenumber_in_poster'					numeric				impute with median
+ 'genres'								category			impute with "Unknown"
+ 'gross'								numeric				impute with median
+ 'imdb_score'							numeric				impute with median
+ 'language'								category			impute with "Unknown"
+ 'movie_facebook_likes'					numeric				impute with median
+ 'movie_imdb_link'						REMOVE
+ 'movie_title'							string				impute with "Unknown"
+ 'num_critic_for_reviews'				numeric				impute with median
+ 'num_user_for_reviews'					numeric				impute with median
+ 'num_voted_users'						numeric				impute with median
+ 'plot_keywords'						string				impute with "Unknwon"
+ 'title_year'							year/numeric		impute with ?
