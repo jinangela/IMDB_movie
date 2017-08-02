@@ -1,0 +1,13 @@
+Goal: Write a story for this exercise.
+
+Key point(The question that I want to answer by doing this exercise is): Better custom recommendations (to myself)
+
+# Intro (Why am I doing this?)
+
+I love **Inception**, a lot.
+
+However, when I tried to search for similar movies on IMDB by looking through the section "People liked this also liked...", what I found were movies like **Interstellar**, **The Dark Knight** and **Forrest Gump** etc.
+
+Well, most of the recommendations are Christopher Nolan's movies. By the way, I like this guy -- actually probably 30% of the movies that I like are his work. But the thing is, I don't like the movies in the recommendations. We all know that whether you enjoy a movie or not is highly subjective, and I guess I just have a different taste from most people on IMDB. For me, I would not love a movie just because of its director, cast or genres(sometimes not even because of its contents) -- it might because I love the topic(s) that the movie discussed, its structure, or most of the time I guess, the meanings that the director is trying to convey in the movie, just like my another favorite **The Matrix**.
+
+That's probably why I am doing this exercise. I want to find movies that I haven't seen, but can be pretty sure that I would like based on certain characteristics and their similarities to a few movies that I have seen and really liked.
