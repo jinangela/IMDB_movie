@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="872ba58e-e9de-4f72-939a-63b5803c9c96" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/examine_result.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/Movie clustering - text data - word2vec.ipynb" afterPath="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/Movie clustering - text data - word2vec.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/processed/vocab_1000.tsv" afterPath="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/processed/vocab_1000.tsv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,25 +17,27 @@
     <favorites_list name="IMDB_movie" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="word2vec_starter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/word2vec_starter.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="101" column="10" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="10" />
+            <state relative-caret-position="462">
+              <caret line="94" column="67" lean-forward="false" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
               <folding>
-                <element signature="e#311#349#0" expanded="true" />
+                <element signature="e#24#47#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="skipgram.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py">
+      <file leaf-file-name="data_helpers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/data_helpers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2079">
-              <caret line="99" column="82" lean-forward="false" selection-start-line="99" selection-start-column="82" selection-end-line="99" selection-end-column="82" />
-              <folding />
+            <state relative-caret-position="777">
+              <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -51,6 +54,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>process_data</find>
+      <find>get_index_vocab</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -65,14 +69,20 @@
         <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/word2vec_starter.py" />
         <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/examine_result.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py" />
         <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/Movie clustering - text data - word2vec.ipynb" />
+        <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram_on_storyline.py" />
+        <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py" />
+        <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/skipgram_on_storyline.py" />
+        <option value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/CNN_Text_Classification/cnn_on_text.py" />
+        <option value="$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/text_cnn.py" />
+        <option value="$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/data_helpers.py" />
+        <option value="$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/train.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="467" />
-    <option name="y" value="-21" />
+    <option name="x" value="287" />
+    <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -113,8 +123,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,28 +135,13 @@
             <path>
               <item name="IMDB_movie" type="b2602c69:ProjectViewProjectNode" />
               <item name="IMDB_movie" type="462c0819:PsiDirectoryNode" />
-              <item name="05_Unsupervised_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="04_Supervised_Learning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IMDB_movie" type="b2602c69:ProjectViewProjectNode" />
               <item name="IMDB_movie" type="462c0819:PsiDirectoryNode" />
-              <item name="05_Unsupervised_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Clustering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IMDB_movie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMDB_movie" type="462c0819:PsiDirectoryNode" />
-              <item name="05_Unsupervised_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Clustering" type="462c0819:PsiDirectoryNode" />
-              <item name="tensorflow_tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IMDB_movie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IMDB_movie" type="462c0819:PsiDirectoryNode" />
-              <item name="05_Unsupervised_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Clustering" type="462c0819:PsiDirectoryNode" />
-              <item name="tensorflow_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="04_Supervised_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="CNN_Text_Classification" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IMDB_movie" type="b2602c69:ProjectViewProjectNode" />
@@ -159,10 +154,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/skipgram_on_storyline.py" />
     <property name="settings.editor.selected.configurable" value="Console" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\usz0b3l\Documents\Mengshan\Projects\IMDB\IMDB_movie\05_Unsupervised_Learning\Clustering\" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\usz0b3l\Documents\Mengshan\Projects\IMDB\IMDB_movie\05_Unsupervised_Learning\Clustering" />
     </key>
@@ -187,12 +185,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="IMDB_movie" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/skipgram_on_storyline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -200,6 +198,9 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -221,12 +222,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37115666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24010417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33067092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3304904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -251,6 +252,24 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/word2vec_starter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2037">
+          <caret line="101" column="10" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="10" />
+          <folding>
+            <element signature="e#311#349#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2079">
+          <caret line="99" column="82" lean-forward="false" selection-start-line="99" selection-start-column="82" selection-end-line="99" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/Movie clustering - text data - word2vec.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -277,24 +296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/src/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/src/process_data_utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1302">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/Movie clustering - text data - word2vec.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -302,21 +303,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/src/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="12" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/src/process_data_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="99" column="41" lean-forward="true" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#38#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/processed/vocab_1000.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/processed/vocab_1000.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/word2vec_starter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="101" column="10" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="10" />
+        <state relative-caret-position="966">
+          <caret line="97" column="23" lean-forward="false" selection-start-line="97" selection-start-column="23" selection-end-line="97" selection-end-column="23" />
           <folding>
-            <element signature="e#311#349#0" expanded="true" />
+            <element signature="e#311#349#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/processed/embedding.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/processed/embed_matrix.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/tensorflow_tests/skipgram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="99" column="82" lean-forward="false" selection-start-line="99" selection-start-column="82" selection-end-line="99" selection-end-column="82" />
+        <state relative-caret-position="21">
+          <caret line="72" column="27" lean-forward="false" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/CNN_Text_Classification/cnn_on_text.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05_Unsupervised_Learning/Clustering/skipgram_on_storyline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="99" column="105" lean-forward="true" selection-start-line="96" selection-start-column="8" selection-end-line="99" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/data_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/text_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1090">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04_Supervised_Learning/CNN_Text_Classification/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="94" column="67" lean-forward="false" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
+          <folding>
+            <element signature="e#24#47#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
