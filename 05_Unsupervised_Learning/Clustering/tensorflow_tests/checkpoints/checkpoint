@@ -1,0 +1,6 @@
+model_checkpoint_path: "SkipGramModel_Test-39999"
+all_model_checkpoint_paths: "SkipGramModel_Test-31999"
+all_model_checkpoint_paths: "SkipGramModel_Test-33999"
+all_model_checkpoint_paths: "SkipGramModel_Test-35999"
+all_model_checkpoint_paths: "SkipGramModel_Test-37999"
+all_model_checkpoint_paths: "SkipGramModel_Test-39999"
