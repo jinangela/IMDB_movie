@@ -14,8 +14,10 @@ import csv
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("positive_data_file", "./data/rt-polaritydata/rt-polarity.pos", "Data source for the positive data.")
-tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity.neg", "Data source for the positive data.")
+tf.flags.DEFINE_string("train_data_file", "../../01_Data/Outputs/storyline_with_genres_train.csv", "Data source.")
+tf.flags.DEFINE_string("dev_data_file", "../../01_Data/Outputs/storyline_with_genres_test.csv", "Data source.")
+# tf.flags.DEFINE_string("positive_data_file", "./data/rt-polaritydata/rt-polarity.pos", "Data source for the positive data.")
+# tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity.neg", "Data source for the positive data.")
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
@@ -36,11 +38,10 @@ print("")
 
 # CHANGE THIS: Load data. Load your own data here
 if FLAGS.eval_train:
-    x_raw, y_test = data_helpers.load_data_and_labels(FLAGS.positive_data_file, FLAGS.negative_data_file)
-    y_test = np.argmax(y_test, axis=1)
+    x_raw, y_test = data_helpers.load_data_and_gen_labels(FLAGS.train_data_file)
+    # y_test = np.argmax(y_test, axis=1)
 else:
-    x_raw = ["a masterpiece four years in the making", "everything is off."]
-    y_test = [1, 0]
+    x_raw, y_test = data_helpers.load_data_and_gen_labels(FLAGS.dev_data_file)
 
 # Map data into vocabulary
 vocab_path = os.path.join(FLAGS.checkpoint_dir, "..", "vocab")
@@ -70,6 +71,7 @@ with graph.as_default():
 
         # Tensors we want to evaluate
         predictions = graph.get_operation_by_name("output/predictions").outputs[0]
+        # This step might be wrong.
 
         # Generate batches for one epoch
         batches = data_helpers.batch_iter(list(x_test), FLAGS.batch_size, 1, shuffle=False)
@@ -83,7 +85,9 @@ with graph.as_default():
 
 # Print accuracy if y_test is defined
 if y_test is not None:
-    correct_predictions = float(sum(all_predictions == y_test))
+    correct_predictions = tf.reduce_sum(tf.reduce_sum(tf.multiply(all_predictions, y_test),
+                                                       1, keep_dims=True), [0,1])
+    # correct_predictions = float(sum(all_predictions == y_test))
     print("Total number of test examples: {}".format(len(y_test)))
     print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
 

@@ -14,7 +14,7 @@ from tensorflow.contrib import learn
 
 # Data loading params
 tf.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training data to use for validation")
-tf.flags.DEFINE_string("data_file", "../../01_Data/Outputs/storyline_with_genres.csv", "Data source.")
+tf.flags.DEFINE_string("data_file", "../../01_Data/Outputs/storyline_with_genres_train.csv", "Data source.")
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
@@ -22,6 +22,7 @@ tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (d
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularization lambda (default: 0.0)")
+tf.flags.DEFINE_float("learning_rate", 1e-4, "Learning rate (default: 1e-4)")
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
@@ -50,7 +51,7 @@ print("Loading data...")
 x_text, y = data_helpers.load_data_and_gen_labels(FLAGS.data_file)
 
 # Build vocabulary
-max_document_length = max([len(x.split(" ")) for x in x_text]) # 214 in storyline
+max_document_length = max([len(x.split(" ")) for x in x_text])  # 214 in storyline
 vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
 x = np.array(list(vocab_processor.fit_transform(x_text)))
 
@@ -89,10 +90,9 @@ with tf.Graph().as_default():
 
         # Define Training procedure
         global_step = tf.Variable(0, name="global_step", trainable=False)
-        optimizer = tf.train.AdamOptimizer(1e-3)
+        optimizer = tf.train.AdamOptimizer(FLAGS.learning_rate)  # Maybe we can try different optimizer
         grads_and_vars = optimizer.compute_gradients(cnn.loss)
         train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
-        # ========================== LOG ==========================
 
         # Keep track of gradient values and sparsity (optional)
         grad_summaries = []
@@ -184,3 +184,5 @@ with tf.Graph().as_default():
             if current_step % FLAGS.checkpoint_every == 0:
                 path = saver.save(sess, checkpoint_prefix, global_step=current_step)
                 print("Saved model checkpoint to {}\n".format(path))
+
+# Issue: Why the training loss keeps increasing???
