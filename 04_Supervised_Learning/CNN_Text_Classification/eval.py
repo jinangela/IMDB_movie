@@ -21,7 +21,7 @@ tf.flags.DEFINE_string("dev_data_file", "../../01_Data/Outputs/storyline_with_ge
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "runs\\1502733292\\checkpoints\\", "Checkpoint directory from training run")
 tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 
 # Misc Parameters
@@ -77,19 +77,21 @@ with graph.as_default():
         batches = data_helpers.batch_iter(list(x_test), FLAGS.batch_size, 1, shuffle=False)
 
         # Collect the predictions here
-        all_predictions = []
+        all_predictions = None
 
         for x_test_batch in batches:
-            batch_predictions = sess.run(predictions, {input_x: x_test_batch, dropout_keep_prob: 1.0})
-            all_predictions = np.concatenate([all_predictions, batch_predictions])
+            batch_predictions = sess.run(predictions, {input_x: x_test_batch, dropout_keep_prob: 0.5})
+            if all_predictions is not None:
+                all_predictions = np.concatenate([all_predictions, batch_predictions])
+            else:
+                all_predictions = batch_predictions
 
 # Print accuracy if y_test is defined
 if y_test is not None:
-    correct_predictions = tf.reduce_sum(tf.reduce_sum(tf.multiply(all_predictions, y_test),
-                                                       1, keep_dims=True), [0,1])
+    correct_predictions = np.mean(np.matmul(all_predictions, np.transpose(y_test)).diagonal())
     # correct_predictions = float(sum(all_predictions == y_test))
     print("Total number of test examples: {}".format(len(y_test)))
-    print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
+    print("Accuracy: {:g}".format(correct_predictions))
 
 # Save the evaluation to a csv
 predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))

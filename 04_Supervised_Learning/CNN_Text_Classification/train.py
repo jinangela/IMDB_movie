@@ -5,6 +5,7 @@ import numpy as np
 import os
 import time
 import datetime
+import math
 import data_helpers
 from text_cnn import TextCNN
 from tensorflow.contrib import learn
@@ -22,7 +23,9 @@ tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (d
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularization lambda (default: 0.0)")
-tf.flags.DEFINE_float("learning_rate", 1e-4, "Learning rate (default: 1e-4)")
+# tf.flags.DEFINE_float("learning_rate", 1e-5, "Learning rate (default: 1e-5)")
+# when using learning_rate = 1e-4, the model will be diverging
+# when using learning_rate = 1e-5, the model will be diverging after the first 2000 steps...
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
@@ -34,6 +37,7 @@ tf.flags.DEFINE_integer("num_checkpoints", 5, "Number of checkpoints to store (d
 # Misc Parameters -- What are these two for?
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
 tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on devices")
+tf.flags.DEFINE_float("decay_coefficient", 1.8, "Decay coefficient (default: 1.8)")
 
 FLAGS = tf.flags.FLAGS
 FLAGS._parse_flags()
@@ -81,7 +85,7 @@ with tf.Graph().as_default():
     with sess.as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
-            num_classes=y_train.shape[1], # this could be wrong
+            num_classes=y_train.shape[1],  # this could be wrong
             vocab_size=len(vocab_processor.vocabulary_),
             embedding_size=FLAGS.embedding_dim,
             filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
@@ -90,7 +94,7 @@ with tf.Graph().as_default():
 
         # Define Training procedure
         global_step = tf.Variable(0, name="global_step", trainable=False)
-        optimizer = tf.train.AdamOptimizer(FLAGS.learning_rate)  # Maybe we can try different optimizer
+        optimizer = tf.train.AdamOptimizer(cnn.learning_rate)  # Maybe we can try different optimizer
         grads_and_vars = optimizer.compute_gradients(cnn.loss)
         train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
 
@@ -136,20 +140,22 @@ with tf.Graph().as_default():
         # Initialize all variables
         sess.run(tf.global_variables_initializer())
 
-        def train_step(x_batch, y_batch):
+        def train_step(x_batch, y_batch, learning_rate):
             """
             A single training step
             """
             feed_dict = {
-              cnn.input_x: x_batch,
-              cnn.input_y: y_batch,
-              cnn.dropout_keep_prob: FLAGS.dropout_keep_prob
+                cnn.input_x: x_batch,
+                cnn.input_y: y_batch,
+                cnn.dropout_keep_prob: FLAGS.dropout_keep_prob,
+                cnn.learning_rate: learning_rate
             }
             _, step, summaries, loss, accuracy = sess.run(
                 [train_op, global_step, train_summary_op, cnn.loss, cnn.accuracy],
                 feed_dict)
             time_str = datetime.datetime.now().isoformat()
-            print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+            print("{}: step {}, loss {:g}, acc {:g}, learning_rate {:g}".format(time_str, step, loss, accuracy,
+                                                                                learning_rate))
             train_summary_writer.add_summary(summaries, step)
 
         def dev_step(x_batch, y_batch, writer=None):
@@ -172,10 +178,17 @@ with tf.Graph().as_default():
         # Generate batches
         batches = data_helpers.batch_iter(
             list(zip(x_train, y_train)), FLAGS.batch_size, FLAGS.num_epochs)
+        # It uses dynamic learning rate with a high value at the beginning to speed up the training
+        max_learning_rate = 5e-5
+        min_learning_rate = 8e-7
+        decay_speed = FLAGS.decay_coefficient*len(y_train)/FLAGS.batch_size
         # Training loop. For each batch...
+        counter = 0
         for batch in batches:
+            learning_rate = min_learning_rate + (max_learning_rate - min_learning_rate) * math.exp(-counter/decay_speed)
+            counter += 1
             x_batch, y_batch = zip(*batch)
-            train_step(x_batch, y_batch)
+            train_step(x_batch, y_batch, learning_rate)
             current_step = tf.train.global_step(sess, global_step)
             if current_step % FLAGS.evaluate_every == 0:
                 print("\nEvaluation:")
