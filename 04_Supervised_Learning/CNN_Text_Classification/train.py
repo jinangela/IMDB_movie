@@ -22,7 +22,7 @@ tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embed
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
-tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularization lambda (default: 0.0)")
+tf.flags.DEFINE_float("l2_reg_lambda", 0.5, "L2 regularization lambda (default: 0.0)")
 # tf.flags.DEFINE_float("learning_rate", 1e-5, "Learning rate (default: 1e-5)")
 # when using learning_rate = 1e-4, the model will be diverging
 # when using learning_rate = 1e-5, the model will be diverging after the first 2000 steps...
@@ -37,7 +37,7 @@ tf.flags.DEFINE_integer("num_checkpoints", 5, "Number of checkpoints to store (d
 # Misc Parameters -- What are these two for?
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
 tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on devices")
-tf.flags.DEFINE_float("decay_coefficient", 1.8, "Decay coefficient (default: 1.8)")
+tf.flags.DEFINE_float("decay_coefficient", 1.2, "Decay coefficient (default: 2.5)")
 
 FLAGS = tf.flags.FLAGS
 FLAGS._parse_flags()
@@ -179,8 +179,8 @@ with tf.Graph().as_default():
         batches = data_helpers.batch_iter(
             list(zip(x_train, y_train)), FLAGS.batch_size, FLAGS.num_epochs)
         # It uses dynamic learning rate with a high value at the beginning to speed up the training
-        max_learning_rate = 5e-5
-        min_learning_rate = 8e-7
+        max_learning_rate = 1e-3
+        min_learning_rate = 1e-4
         decay_speed = FLAGS.decay_coefficient*len(y_train)/FLAGS.batch_size
         # Training loop. For each batch...
         counter = 0
@@ -198,4 +198,20 @@ with tf.Graph().as_default():
                 path = saver.save(sess, checkpoint_prefix, global_step=current_step)
                 print("Saved model checkpoint to {}\n".format(path))
 
-# Issue: Why the training loss keeps increasing???
+# Issue No.1: Why the training loss keeps increasing???
+# Note that the loss and accuracy for a training batch may vary significantly across batches if your batch size is small.
+# And because we’re using dropout your training metrics may start out being worse than your evaluation metrics.
+# If you training accuracy is poor then it could be that you don't have enough capacity in your network.
+# The loss keeps increasing should be because I was using the wrong loss function. I should have used
+# sigmoid_cross_entropy_with_logits since this one is for multilabel classification where the labels are not mutually
+# exclusive. Let's test it!
+# Changed loss function and ReLU to Sigmoid, at least now the training loss keeps decreasing, so problem solved!
+
+# Issue No.2: Why the dev accuracy is not increasing???
+# The current way to calculate accuracy may not be appropriate.
+# A workaround would be: define the accuracy as the ratio of intersection over union of the predictions and true labels
+# So for example, the true labels are [0,1,1,0,1], the predicted probabilities are [0.1,0.3,0.1,0.1,0.4], since the
+# average would be 0.2, so for those probabilities larger than the average, we can classify it as 1, which gives us the
+# predicted labels as [0,1,0,0,1]. The the accuracy can be calculated as 2/3. Finally average this number across a
+# batch.
+# See reference: <<Towards Multi Label Text Classification through Label Propagation>>

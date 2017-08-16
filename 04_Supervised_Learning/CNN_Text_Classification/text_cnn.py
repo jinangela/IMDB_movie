@@ -42,7 +42,8 @@ class TextCNN(object):
                     padding="VALID",
                     name="conv")
                 # Apply nonlinearity
-                h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
+                h = tf.nn.sigmoid(tf.nn.bias_add(conv, b), name="sigmoid")
+                # h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
                 # Maxpooling over the outputs
                 pooled = tf.nn.max_pool(
                     h,
@@ -77,7 +78,13 @@ class TextCNN(object):
 
         # Calculate Mean cross-entropy loss
         with tf.name_scope("loss"):
-            losses = tf.nn.softmax_cross_entropy_with_logits(logits=self.scores, labels=self.input_y)
+            losses = tf.nn.sigmoid_cross_entropy_with_logits(logits=self.scores, labels=self.input_y)
+            # Measures the probability error in discrete classification tasks in which each class is independent and
+            # not mutually exclusive. For instance, one could perform multilabel classification where a picture can
+            # contain both an elephant and a dog at the same time.
+            # For softmax: Measures the probability error in discrete classification tasks in which the classes are
+            # mutually exclusive (each entry is in exactly one class). For example, each CIFAR-10 image is labeled with
+            # one and only one label: an image can be a dog or a truck, but not both.
             self.loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
 
         # Accuracy
