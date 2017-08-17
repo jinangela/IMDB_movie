@@ -21,7 +21,7 @@ tf.flags.DEFINE_string("dev_data_file", "../../01_Data/Outputs/storyline_with_ge
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "runs\\1502911074\\checkpoints\\", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "runs\\1502999733\\checkpoints\\", "Checkpoint directory from training run")
 tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 
 # Misc Parameters
@@ -88,10 +88,15 @@ with graph.as_default():
 
 # Print accuracy if y_test is defined
 if y_test is not None:
-    correct_predictions = np.mean(np.matmul(all_predictions, np.transpose(y_test)).diagonal())
-    # correct_predictions = float(sum(all_predictions == y_test))
+    accuracy1 = np.mean(np.matmul(all_predictions, np.transpose(y_test)).diagonal())  # Version 1
+    avg_prob = np.full(y_test.shape, 1.0/y_test.shape[1])
+    predictions = np.greater(all_predictions, avg_prob).astype(int)
+    intersections = np.matmul(predictions, np.transpose(y_test)).diagonal()
+    unions = np.maximum(np.sum(predictions, 1), np.sum(y_test, 1))
+    accuracy2 = np.mean(np.divide(intersections, unions))  # Version 2
     print("Total number of test examples: {}".format(len(y_test)))
-    print("Accuracy: {:g}".format(correct_predictions))
+    print("Accuracy Version 1: {:g}".format(accuracy1))
+    print("Accuracy Version 2: {:g}".format(accuracy2))
 
 # Save the evaluation to a csv
 predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))

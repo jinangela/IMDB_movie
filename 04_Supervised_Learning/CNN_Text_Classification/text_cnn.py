@@ -42,8 +42,8 @@ class TextCNN(object):
                     padding="VALID",
                     name="conv")
                 # Apply nonlinearity
-                h = tf.nn.sigmoid(tf.nn.bias_add(conv, b), name="sigmoid")
-                # h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
+                # h = tf.nn.sigmoid(tf.nn.bias_add(conv, b), name="sigmoid")
+                h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
                 # Maxpooling over the outputs
                 pooled = tf.nn.max_pool(
                     h,
@@ -72,9 +72,10 @@ class TextCNN(object):
             l2_loss += tf.nn.l2_loss(W)
             l2_loss += tf.nn.l2_loss(b)
             self.scores = tf.nn.xw_plus_b(self.h_drop, W, b, name="scores")  # unnormalized log probabilities
-            self.predictions = tf.nn.softmax(self.scores, name="predictions")
-            # self.predictions = tf.argmax(self.scores, 1, name="predictions")
-            # Modify this line to be multi-class outputs???
+            self.predictions = tf.nn.softmax(self.scores, name="predictions")  # Version 1
+            # pred = tf.nn.softmax(self.scores)
+            # avg_prob = tf.fill(tf.shape(self.input_y), 1.0/num_classes)
+            # self.predictions = tf.cast(tf.greater(pred, avg_prob), tf.int32, name="predictions")  # Version 2
 
         # Calculate Mean cross-entropy loss
         with tf.name_scope("loss"):
@@ -90,6 +91,8 @@ class TextCNN(object):
         # Accuracy
         with tf.name_scope("accuracy"):
             correct_predictions = tf.diag_part(tf.matmul(self.predictions, self.input_y, transpose_b=True))
-            self.accuracy = tf.reduce_mean(correct_predictions, name="accuracy")
-            # correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
-            # self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, "float"), name="accuracy")
+            self.accuracy = tf.reduce_mean(correct_predictions, name="accuracy")  # Version 1
+            # intersections = tf.diag_part(tf.matmul(self.predictions, tf.cast(self.input_y, tf.int32), transpose_b=True))
+            # unions = tf.maximum(tf.reduce_sum(self.predictions, 1), tf.reduce_sum(tf.cast(self.input_y, tf.int32), 1))
+            # accuracies = tf.div(intersections, unions)
+            # self.accuracy = tf.reduce_mean(accuracies, name="accuracy")  # Version 2
